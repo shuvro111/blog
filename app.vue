@@ -1,3 +1,11 @@
+<script setup lang="ts">
+useHead({
+  titleTemplate: (titleChunk) => {
+    return titleChunk ? `${titleChunk} | Shuvro Sarkar` : 'Shuvro Sarkar'
+  },
+})
+</script>
+
 <template>
   <NuxtLoadingIndicator color="#22c55e" />
   <AppHeader />
