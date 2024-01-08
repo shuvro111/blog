@@ -9,19 +9,23 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "slicemachine": "start-slicemachine"
+  },
+  "dependencies": {
+    "vue-use-fixed-header": "^2.0.0"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.6.1",
     "@nuxt/ui": "latest",
+    "@nuxtjs/prismic": "^3.0.0",
+    "@slicemachine/adapter-nuxt": "latest",
     "eslint": "npm:eslint-ts-patch",
     "eslint-plugin-format": "^0.1.0",
     "eslint-ts-patch": "^8.56.0-0",
     "nuxt": "^3.9.0",
+    "slice-machine-ui": "latest",
     "vue": "^3.4.5",
     "vue-router": "^4.2.5"
-  },
-  "dependencies": {
-    "vue-use-fixed-header": "^2.0.0"
   }
 }
