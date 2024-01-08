@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { useFixedHeader } from 'vue-use-fixed-header'
+import type { SettingsDocumentData } from '~/prismicio-types'
 
+const { asLink } = usePrismic()
 const { value: settings } = useSettings()
 const headerRef = ref(null)
 const { styles } = useFixedHeader(headerRef)
 
-const navigation = settings?.data.navigation
+// TODO: Convert this to a computed property
+const { navigation } = settings?.data || {}
 </script>
 
 <template>
@@ -23,17 +26,17 @@ const navigation = settings?.data.navigation
               :ui="{ popper: { strategy: 'absolute' } }"
             >
               <ULink
-                :to="$prismic.asLink(item.link)"
+                :to="asLink(item.link)"
                 class="relative px-3 py-4 flex items-center justify-center transition hover:text-primary-500 dark:hover:text-primary-400"
                 active-class="text-primary-600 dark:text-primary-400"
               >
                 <Icon aria-hidden="true" :name="item.icon || ''" class="w-5 h-5 z-10" />
                 <span
-                  v-if="$route.path === $prismic.asLink(item.link)"
+                  v-if="$route.path === asLink(item.link)"
                   class="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-primary-500/0 via-primary-500/70 to-primary-500/0 dark:from-primary-400/0 dark:via-primary-400/40 dark:to-primary-400/0"
                 />
                 <span
-                  v-if="$route.path === $prismic.asLink(item.link)"
+                  v-if="$route.path === asLink(item.link)"
                   class="absolute h-8 w-8 z-0 rounded-full bg-gray-100 dark:bg-white/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 />
                 <span class="sr-only">{{ item.label }}</span>

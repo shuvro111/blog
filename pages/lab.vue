@@ -1,5 +1,8 @@
 <script lang="ts" setup>
-
+useSeoMeta({
+  title: 'Lab',
+  description: 'Lab',
+})
 </script>
 
 <template>
