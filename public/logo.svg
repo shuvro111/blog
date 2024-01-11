@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 112.00 112.00">
 <rect fill="#22c55e" x="-6.68" y="-6.67" transform="translate(56.00,9.38) rotate(45.0)" width="13.36" height="13.34" rx="0.63"/>
-<path fill="#ffffff" d="
+<path fill="#22c55e" d="
   M 78.96 42.42
   L 32.96 88.42
   A 0.47 0.47 0.0 0 1 32.30 88.42

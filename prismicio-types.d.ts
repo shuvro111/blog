@@ -168,6 +168,41 @@ export type SettingsDocument<Lang extends string = string> =
 export type AllDocumentTypes = HomeDocument | SettingsDocument;
 
 /**
+ * Primary content in *Intro → Primary*
+ */
+export interface IntroSliceDefaultPrimary {
+  /**
+   * Heading field in *Intro → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Enter A Heading
+   * - **API ID Path**: intro.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Description field in *Intro → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Enter A Description
+   * - **API ID Path**: intro.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Avatar field in *Intro → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: intro.primary.avatar
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  avatar: prismic.ImageField<never>;
+}
+
+/**
  * Default variation for Intro Slice
  *
  * - **API ID**: `default`
@@ -176,7 +211,7 @@ export type AllDocumentTypes = HomeDocument | SettingsDocument;
  */
 export type IntroSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Record<string, never>,
+  Simplify<IntroSliceDefaultPrimary>,
   never
 >;
 
@@ -212,6 +247,7 @@ declare module "@prismicio/client" {
       SettingsDocumentDataNavigationItem,
       AllDocumentTypes,
       IntroSlice,
+      IntroSliceDefaultPrimary,
       IntroSliceVariation,
       IntroSliceDefault,
     };

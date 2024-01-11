@@ -12,12 +12,12 @@ const { navigation } = settings?.data || {}
 
 <template>
   <header ref="headerRef" :style="styles" class="fixed top-0 w-full z-50">
-    <UContainer as="nav" class="flex items-center justify-beteween my-4 px-3 text-sm font-medium text-gray-800 rounded-full shadow-lg bg-white/90 shadow-gray-800/5 ring-1 backdrop-blur dark:bg-gray-800/50 dark:text-gray-200 dark:ring-gray-700 ring-gray-900/5">
+    <UContainer as="nav" class="flex items-center justify-beteween my-4 text-sm font-medium text-gray-800 rounded-full shadow-lg bg-white/90 shadow-gray-800/5 ring-1 backdrop-blur dark:bg-gray-800/50 dark:text-gray-200 dark:ring-gray-700 ring-gray-900/5">
       <NuxtImg src="/logo.svg" width="30px" height="30px" />
       <ul
         class="w-full"
       >
-        <USkeleton v-if="!settings" class="h-6 w-full rounded-full mx-1" />
+        <USkeleton v-if="!settings" class="h-6 w-full rounded-full max-w-80 mx-auto" />
 
         <div class="flex justify-center">
           <li v-for="item in navigation" :key="item.label as string">

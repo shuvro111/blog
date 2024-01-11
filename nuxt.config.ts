@@ -23,6 +23,9 @@ export default defineNuxtConfig({
     },
     display: 'swap',
   },
+  image: {
+    format: ['webp'],
+  },
   prismic: {
     endpoint: 'shuvro',
   },
