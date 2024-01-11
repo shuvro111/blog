@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useFixedHeader } from 'vue-use-fixed-header'
-import type { SettingsDocumentData } from '~/prismicio-types'
 
 const { asLink } = usePrismic()
 const { value: settings } = useSettings()
