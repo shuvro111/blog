@@ -13,13 +13,14 @@ const { navigation } = settings?.data || {}
 
 <template>
   <header ref="headerRef" :style="styles" class="fixed top-0 w-full z-50">
-    <UContainer as="nav">
+    <UContainer as="nav" class="flex items-center justify-beteween my-4 px-3 text-sm font-medium text-gray-800 rounded-full shadow-lg bg-white/90 shadow-gray-800/5 ring-1 backdrop-blur dark:bg-gray-800/50 dark:text-gray-200 dark:ring-gray-700 ring-gray-900/5">
+      <NuxtImg src="/logo.svg" width="30px" height="30px" />
       <ul
-        class="flex items-center justify-between my-4 px-3 text-sm font-medium text-gray-800 rounded-full shadow-lg bg-white/90 shadow-gray-800/5 ring-1 backdrop-blur dark:bg-gray-800/50 dark:text-gray-200 dark:ring-gray-700 ring-gray-900/5"
+        class="w-full"
       >
         <USkeleton v-if="!settings" class="h-6 w-full rounded-full mx-1" />
 
-        <div class="flex">
+        <div class="flex justify-center">
           <li v-for="item in navigation" :key="item.label as string">
             <UTooltip
               :text="item.label as string"
@@ -39,15 +40,13 @@ const { navigation } = settings?.data || {}
                   v-if="$route.path === asLink(item.link)"
                   class="absolute h-8 w-8 z-0 rounded-full bg-gray-100 dark:bg-white/10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                 />
-                <span class="sr-only">{{ item.label }}</span>
+                <span class="sr-only font-bold font-sans">{{ item.label }}</span>
               </ULink>
             </UTooltip>
           </li>
         </div>
-        <li>
-          <AppThemeToggle />
-        </li>
       </ul>
+      <AppThemeToggle />
     </UContainer>
   </header>
 </template>

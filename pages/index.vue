@@ -10,7 +10,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>
+  <div class="font-sans font-medium">
     Homepage
   </div>
 </template>
