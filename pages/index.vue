@@ -20,5 +20,6 @@ const { data: page } = useAsyncData('[home]', () =>
     wrapper="main"
     :slices="page?.data.slices ?? []"
     :components="components"
+    class="space-y-24"
   />
 </template>

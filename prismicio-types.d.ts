@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type HomeDocumentDataSlicesSlice = IntroSlice;
+type HomeDocumentDataSlicesSlice = SocialLinksSlice | IntroSlice;
 
 /**
  * Content for Home documents
@@ -229,6 +229,86 @@ type IntroSliceVariation = IntroSliceDefault;
  */
 export type IntroSlice = prismic.SharedSlice<"intro", IntroSliceVariation>;
 
+/**
+ * Primary content in *SocialLinks → Primary*
+ */
+export interface SocialLinksSliceDefaultPrimary {
+  /**
+   * Heading field in *SocialLinks → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Enter A Heading
+   * - **API ID Path**: social_links.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+}
+
+/**
+ * Primary content in *SocialLinks → Items*
+ */
+export interface SocialLinksSliceDefaultItem {
+  /**
+   * Label field in *SocialLinks → Items*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_links.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  label: prismic.TitleField;
+
+  /**
+   * Link field in *SocialLinks → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_links.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Icon field in *SocialLinks → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: social_links.items[].icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  icon: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for SocialLinks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialLinksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SocialLinksSliceDefaultPrimary>,
+  Simplify<SocialLinksSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *SocialLinks*
+ */
+type SocialLinksSliceVariation = SocialLinksSliceDefault;
+
+/**
+ * SocialLinks Shared Slice
+ *
+ * - **API ID**: `social_links`
+ * - **Description**: SocialLinks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type SocialLinksSlice = prismic.SharedSlice<
+  "social_links",
+  SocialLinksSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -250,6 +330,11 @@ declare module "@prismicio/client" {
       IntroSliceDefaultPrimary,
       IntroSliceVariation,
       IntroSliceDefault,
+      SocialLinksSlice,
+      SocialLinksSliceDefaultPrimary,
+      SocialLinksSliceDefaultItem,
+      SocialLinksSliceVariation,
+      SocialLinksSliceDefault,
     };
   }
 }

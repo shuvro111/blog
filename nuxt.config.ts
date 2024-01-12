@@ -10,7 +10,7 @@ export default defineNuxtConfig({
         class: 'h-full',
       },
       bodyAttrs: {
-        class: 'antialiased font-sans dark:text-slate-500 dark:bg-slate-900 bg-slate-50',
+        class: 'antialiased font-sans text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900',
       },
     },
   },

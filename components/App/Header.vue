@@ -11,7 +11,7 @@ const { navigation } = settings?.data || {}
 </script>
 
 <template>
-  <header ref="headerRef" :style="styles" class="fixed top-0 w-full z-50">
+  <header ref="headerRef" :style="styles" class="fixed top-0 w-full z-50 px-4 sm:px-0">
     <UContainer as="nav" class="flex items-center justify-beteween my-4 text-sm font-medium text-gray-800 rounded-full shadow-lg bg-white/90 shadow-gray-800/5 ring-1 backdrop-blur dark:bg-gray-800/50 dark:text-gray-200 dark:ring-gray-700 ring-gray-900/5">
       <NuxtImg src="/logo.svg" width="30px" height="30px" />
       <ul
