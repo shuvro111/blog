@@ -45,7 +45,7 @@ const { navigation } = settings?.data || {}
           </li>
         </div>
       </ul>
-      <AppThemeToggle />
+      <ThemeToggle />
     </UContainer>
   </header>
 </template>

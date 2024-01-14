@@ -7,12 +7,10 @@
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
-						"type": "heading2",
+						"type": "paragraph",
 						"content": {
-							"text": "Find Me On Socials",
-							"spans": []
-						},
-						"direction": "ltr"
+							"text": "Est eiusmod occaecat qui laborum incididunt veniam eu nostrud veniam. Exercitation cupidatat incididunt commodo exercitation ut reprehenderit qui ea cillum dolor aute duis. Eiusmod exercitation laboris ipsum."
+						}
 					}
 				]
 			}

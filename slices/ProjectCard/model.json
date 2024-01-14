@@ -1,0 +1,60 @@
+{
+  "id": "project_card",
+  "type": "SharedSlice",
+  "name": "ProjectCard",
+  "description": "ProjectCard",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "name": {
+          "type": "Text",
+          "config": {
+            "label": "Name",
+            "placeholder": ""
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          }
+        },
+        "featured_image": {
+          "type": "Image",
+          "config": {
+            "label": "Featured Image",
+            "constraint": {
+              "width": 40,
+              "height": 40
+            },
+            "thumbnails": []
+          }
+        },
+        "github_url": {
+          "type": "Link",
+          "config": {
+            "label": "Github URL",
+            "placeholder": "",
+            "select": null
+          }
+        },
+        "live_url": {
+          "type": "Link",
+          "config": {
+            "label": "Live URL",
+            "placeholder": "",
+            "select": null
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

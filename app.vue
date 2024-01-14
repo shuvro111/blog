@@ -8,7 +8,7 @@ useHead({
 
 <template>
   <NuxtLoadingIndicator color="#22c55e" />
-  <AppHeader />
+  <Header />
   <UContainer class="py-32 lg:px-0">
     <NuxtPage />
   </UContainer>

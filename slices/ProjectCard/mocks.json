@@ -1,0 +1,54 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"name": {
+				"__TYPE__": "FieldContent",
+				"value": "government",
+				"type": "Text"
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "honor",
+				"type": "Text"
+			},
+			"featured_image": {
+				"__TYPE__": "ImageContent",
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9",
+					"width": 4752,
+					"height": 3168
+				},
+				"url": "https://images.unsplash.com/photo-1589652717521-10c0d092dea9?rect=792%2C0%2C3168%2C3168&w=40&h=40",
+				"width": 40,
+				"height": 40,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 792,
+						"y": 0
+					},
+					"background": "transparent"
+				},
+				"thumbnails": {}
+			},
+			"github_url": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://prismic.io"
+				}
+			},
+			"live_url": {
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "http://twitter.com"
+				}
+			}
+		},
+		"items": []
+	}
+]

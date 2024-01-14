@@ -1,6 +1,6 @@
 {
-  "id": "home",
-  "label": "Home",
+  "id": "projects",
+  "label": "Projects",
   "format": "page",
   "repeatable": false,
   "status": true,
@@ -10,17 +10,7 @@
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
-          "choices": {
-            "featured_projects": {
-              "type": "SharedSlice"
-            },
-            "social_links": {
-              "type": "SharedSlice"
-            },
-            "intro": {
-              "type": "SharedSlice"
-            }
-          }
+          "choices": {}
         }
       }
     },
@@ -33,22 +23,22 @@
         "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
-          "placeholder": ""
-        }
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
           "label": "Meta Image",
           "constraint": {
-            "width": 1280,
-            "height": 720
+            "height": 720,
+            "width": 1280
           },
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       }
     }
   }
