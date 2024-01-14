@@ -4,7 +4,7 @@ import { components } from '~/slices'
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.FeaturedProjectsSlice>([
     'slice',
     'index',
@@ -12,6 +12,13 @@ defineProps(
     'context',
   ]),
 )
+
+const projectSlices = computed(() => {
+  return props.slice.items.map((item) => {
+    const project = item.project as unknown as { data: { slices: Content.ProjectCardSlice[] } }
+    return project.data.slices
+  })
+})
 </script>
 
 <template>
@@ -25,15 +32,11 @@ defineProps(
       class="uppercase text-sm tracking-widest font-semibold text-primary-400 mb-4"
     />
 
-    <!-- <div v-for="sl" class="space-y-4"> -->
-
-    <!-- </div> -->
-
     <div class="space-y-8">
       <SliceZone
-        v-for="(item, index) in slice.items"
+        v-for="(item, index) in projectSlices"
         :key="index"
-        :slices="item.project?.data?.slices ?? []"
+        :slices="item"
         :components="components"
       />
     </div>
