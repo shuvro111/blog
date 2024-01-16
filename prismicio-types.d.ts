@@ -4,6 +4,60 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+/**
+ * Content for BlogPost documents
+ */
+interface BlogpostDocumentData {
+  /**
+   * Title field in *BlogPost*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blogpost.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Content field in *BlogPost*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blogpost.content
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+
+  /**
+   * Featured Image field in *BlogPost*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blogpost.featured_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  featured_image: prismic.ImageField<never>;
+}
+
+/**
+ * BlogPost document from Prismic
+ *
+ * - **API ID**: `blogpost`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BlogpostDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<BlogpostDocumentData>,
+    "blogpost",
+    Lang
+  >;
+
 type HomeDocumentDataSlicesSlice =
   | FeaturedProjectsSlice
   | SocialLinksSlice
@@ -268,6 +322,7 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
+  | BlogpostDocument
   | HomeDocument
   | ProjectDocument
   | ProjectsDocument
@@ -600,6 +655,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      BlogpostDocument,
+      BlogpostDocumentData,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
