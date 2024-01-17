@@ -1,0 +1,32 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "RECENT ARTICLES",
+							"spans": []
+						},
+						"direction": "ltr"
+					}
+				]
+			},
+			"number_of_posts": {
+				"__TYPE__": "FieldContent",
+				"value": "80",
+				"type": "Number"
+			},
+			"order": {
+				"__TYPE__": "FieldContent",
+				"value": "desc",
+				"type": "Select"
+			}
+		},
+		"items": []
+	}
+]

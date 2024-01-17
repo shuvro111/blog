@@ -5,60 +5,61 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 /**
- * Content for BlogPost documents
+ * Content for Article documents
  */
-interface BlogpostDocumentData {
+interface ArticleDocumentData {
   /**
-   * Title field in *BlogPost*
+   * Title field in *Article*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: blogpost.title
+   * - **API ID Path**: article.title
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
   title: prismic.KeyTextField;
 
   /**
-   * Content field in *BlogPost*
+   * Description field in *Article*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Content field in *Article*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: blogpost.content
+   * - **API ID Path**: article.content
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
   content: prismic.RichTextField;
-
-  /**
-   * Featured Image field in *BlogPost*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: blogpost.featured_image
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  featured_image: prismic.ImageField<never>;
 }
 
 /**
- * BlogPost document from Prismic
+ * Article document from Prismic
  *
- * - **API ID**: `blogpost`
+ * - **API ID**: `article`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type BlogpostDocument<Lang extends string = string> =
+export type ArticleDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<BlogpostDocumentData>,
-    "blogpost",
+    Simplify<ArticleDocumentData>,
+    "article",
     Lang
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | BlogPostsSlice
   | FeaturedProjectsSlice
   | SocialLinksSlice
   | IntroSlice;
@@ -322,11 +323,77 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
-  | BlogpostDocument
+  | ArticleDocument
   | HomeDocument
   | ProjectDocument
   | ProjectsDocument
   | SettingsDocument;
+
+/**
+ * Primary content in *Articles → Primary*
+ */
+export interface BlogPostsSliceDefaultPrimary {
+  /**
+   * Heading field in *Articles → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_posts.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Number Of Posts field in *Articles → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: blog_posts.primary.number_of_posts
+   * - **Documentation**: https://prismic.io/docs/field#number
+   */
+  number_of_posts: prismic.NumberField;
+
+  /**
+   * Order field in *Articles → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Select Sort Order
+   * - **Default Value**: desc
+   * - **API ID Path**: blog_posts.primary.order
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  order: prismic.SelectField<"desc" | "asc", "filled">;
+}
+
+/**
+ * Default variation for Articles Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogPostsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<BlogPostsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Articles*
+ */
+type BlogPostsSliceVariation = BlogPostsSliceDefault;
+
+/**
+ * Articles Shared Slice
+ *
+ * - **API ID**: `blog_posts`
+ * - **Description**: BlogPosts
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogPostsSlice = prismic.SharedSlice<
+  "blog_posts",
+  BlogPostsSliceVariation
+>;
 
 /**
  * Primary content in *FeaturedProjects → Primary*
@@ -655,8 +722,8 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
-      BlogpostDocument,
-      BlogpostDocumentData,
+      ArticleDocument,
+      ArticleDocumentData,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
@@ -670,6 +737,10 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
       AllDocumentTypes,
+      BlogPostsSlice,
+      BlogPostsSliceDefaultPrimary,
+      BlogPostsSliceVariation,
+      BlogPostsSliceDefault,
       FeaturedProjectsSlice,
       FeaturedProjectsSliceDefaultPrimary,
       FeaturedProjectsSliceDefaultItem,

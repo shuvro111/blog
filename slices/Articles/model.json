@@ -1,0 +1,44 @@
+{
+  "id": "blog_posts",
+  "type": "SharedSlice",
+  "name": "Articles",
+  "description": "BlogPosts",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "number_of_posts": {
+          "type": "Number",
+          "config": {
+            "label": "Number Of Posts",
+            "placeholder": ""
+          }
+        },
+        "order": {
+          "type": "Select",
+          "config": {
+            "label": "Order",
+            "placeholder": "Select Sort Order",
+            "options": ["desc", "asc"],
+            "default_value": "desc"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
