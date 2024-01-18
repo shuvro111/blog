@@ -59,6 +59,7 @@ export type ArticleDocument<Lang extends string = string> =
   >;
 
 type HomeDocumentDataSlicesSlice =
+  | NewsletterSlice
   | BlogPostsSlice
   | FeaturedProjectsSlice
   | SocialLinksSlice
@@ -157,7 +158,7 @@ export type ProjectDocument<Lang extends string = string> =
     Lang
   >;
 
-type ProjectsDocumentDataSlicesSlice = never;
+type ProjectsDocumentDataSlicesSlice = FeaturedProjectsSlice | IntroSlice;
 
 /**
  * Content for Projects documents
@@ -534,9 +535,47 @@ export type IntroSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Intro → Primary*
+ */
+export interface IntroSliceWithoutImagePrimary {
+  /**
+   * Heading field in *Intro → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: Enter A Heading
+   * - **API ID Path**: intro.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Description field in *Intro → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: Enter A Description
+   * - **API ID Path**: intro.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Without Image variation for Intro Slice
+ *
+ * - **API ID**: `withoutImage`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type IntroSliceWithoutImage = prismic.SharedSliceVariation<
+  "withoutImage",
+  Simplify<IntroSliceWithoutImagePrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Intro*
  */
-type IntroSliceVariation = IntroSliceDefault;
+type IntroSliceVariation = IntroSliceDefault | IntroSliceWithoutImage;
 
 /**
  * Intro Shared Slice
@@ -546,6 +585,141 @@ type IntroSliceVariation = IntroSliceDefault;
  * - **Documentation**: https://prismic.io/docs/slice
  */
 export type IntroSlice = prismic.SharedSlice<"intro", IntroSliceVariation>;
+
+/**
+ * Primary content in *Newsletter → Primary*
+ */
+export interface NewsletterSliceDefaultPrimary {
+  /**
+   * Avatar field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.avatar
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  avatar: prismic.ImageField<never>;
+
+  /**
+   * Email field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.email
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email: prismic.KeyTextField;
+
+  /**
+   * Email Copy Icon field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.email_copy_icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_copy_icon: prismic.KeyTextField;
+
+  /**
+   * Email Copied Icon field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.email_copied_icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_copied_icon: prismic.KeyTextField;
+
+  /**
+   * Heading field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  heading: prismic.TitleField;
+
+  /**
+   * Description field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Email Field Icon field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.email_field_icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_field_icon: prismic.KeyTextField;
+
+  /**
+   * Email Field Placeholder field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.email_field_placeholder
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  email_field_placeholder: prismic.KeyTextField;
+
+  /**
+   * Button Label field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_label: prismic.KeyTextField;
+
+  /**
+   * Button Icon field in *Newsletter → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: newsletter.primary.button_icon
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  button_icon: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Newsletter Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NewsletterSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Newsletter*
+ */
+type NewsletterSliceVariation = NewsletterSliceDefault;
+
+/**
+ * Newsletter Shared Slice
+ *
+ * - **API ID**: `newsletter`
+ * - **Description**: Newsletter
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NewsletterSlice = prismic.SharedSlice<
+  "newsletter",
+  NewsletterSliceVariation
+>;
 
 /**
  * Primary content in *ProjectCard → Primary*
@@ -748,8 +922,14 @@ declare module "@prismicio/client" {
       FeaturedProjectsSliceDefault,
       IntroSlice,
       IntroSliceDefaultPrimary,
+      IntroSliceWithoutImagePrimary,
       IntroSliceVariation,
       IntroSliceDefault,
+      IntroSliceWithoutImage,
+      NewsletterSlice,
+      NewsletterSliceDefaultPrimary,
+      NewsletterSliceVariation,
+      NewsletterSliceDefault,
       ProjectCardSlice,
       ProjectCardSliceDefaultPrimary,
       ProjectCardSliceVariation,

@@ -1,0 +1,95 @@
+{
+  "id": "newsletter",
+  "type": "SharedSlice",
+  "name": "Newsletter",
+  "description": "Newsletter",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "avatar": {
+          "type": "Image",
+          "config": {
+            "label": "Avatar",
+            "constraint": {
+              "width": 64,
+              "height": 64
+            },
+            "thumbnails": []
+          }
+        },
+        "email": {
+          "type": "Text",
+          "config": {
+            "label": "Email",
+            "placeholder": ""
+          }
+        },
+        "email_copy_icon": {
+          "type": "Text",
+          "config": {
+            "label": "Email Copy Icon",
+            "placeholder": ""
+          }
+        },
+        "email_copied_icon": {
+          "type": "Text",
+          "config": {
+            "label": "Email Copied Icon",
+            "placeholder": ""
+          }
+        },
+        "heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Heading",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading2"
+          }
+        },
+        "description": {
+          "type": "Text",
+          "config": {
+            "label": "Description",
+            "placeholder": ""
+          }
+        },
+        "email_field_icon": {
+          "type": "Text",
+          "config": {
+            "label": "Email Field Icon",
+            "placeholder": ""
+          }
+        },
+        "email_field_placeholder": {
+          "type": "Text",
+          "config": {
+            "label": "Email Field Placeholder",
+            "placeholder": ""
+          }
+        },
+        "button_label": {
+          "type": "Text",
+          "config": {
+            "label": "Button Label",
+            "placeholder": ""
+          }
+        },
+        "button_icon": {
+          "type": "Text",
+          "config": {
+            "label": "Button Icon",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

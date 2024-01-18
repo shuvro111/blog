@@ -1,0 +1,83 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"avatar": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1593642633279-1796119d5482",
+					"width": 4016,
+					"height": 6016
+				},
+				"url": "https://images.unsplash.com/photo-1593642633279-1796119d5482?rect=0%2C1000%2C4016%2C4016&w=64&h=64",
+				"width": 64,
+				"height": 64,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 1000
+					},
+					"background": "transparent"
+				},
+				"credits": null,
+				"alt": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"email": {
+				"__TYPE__": "FieldContent",
+				"value": "sight",
+				"type": "Text"
+			},
+			"email_copy_icon": {
+				"__TYPE__": "FieldContent",
+				"value": "finest",
+				"type": "Text"
+			},
+			"heading": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Actually"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "FieldContent",
+				"value": "gold",
+				"type": "Text"
+			},
+			"email_field_icon": {
+				"__TYPE__": "FieldContent",
+				"value": "show",
+				"type": "Text"
+			},
+			"email_field_placeholder": {
+				"__TYPE__": "FieldContent",
+				"value": "income",
+				"type": "Text"
+			},
+			"button_label": {
+				"__TYPE__": "FieldContent",
+				"value": "rough",
+				"type": "Text"
+			},
+			"button_icon": {
+				"__TYPE__": "FieldContent",
+				"value": "rate",
+				"type": "Text"
+			},
+			"email_copied_icon": {
+				"__TYPE__": "FieldContent",
+				"value": "greater",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]
