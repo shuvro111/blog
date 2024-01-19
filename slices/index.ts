@@ -10,6 +10,5 @@ export const components = defineSliceZoneComponents({
   ),
   intro: defineAsyncComponent(() => import("./Intro/index.vue")),
   newsletter: defineAsyncComponent(() => import("./Newsletter/index.vue")),
-  project_card: defineAsyncComponent(() => import("./ProjectCard/index.vue")),
   social_links: defineAsyncComponent(() => import("./SocialLinks/index.vue")),
 });

@@ -17,7 +17,7 @@ const { client } = usePrismic()
 const numberofPosts = props.slice.primary.number_of_posts
 const order = props.slice.primary.order
 
-const { data: postsData } = await useAsyncData('posts', () =>
+const { data: articlesData } = await useAsyncData('articles', () =>
   client.getByType('article', {
     pageSize: Number(numberofPosts),
     orderings: {
@@ -27,7 +27,7 @@ const { data: postsData } = await useAsyncData('posts', () =>
     fetch: ['article.title', 'article.description'],
   }))
 
-const posts = postsData.value?.results
+const articles = articlesData.value?.results
 </script>
 
 <template>
@@ -40,8 +40,8 @@ const posts = postsData.value?.results
       class="uppercase text-sm tracking-widest font-semibold text-primary-400 mb-4"
     />
     <ul class="space-y-8">
-      <li v-for="post in posts" :key="post.id" class="post-card">
-        <ArticleCard :article="post" />
+      <li v-for="article in articles" :key="article.id">
+        <ArticleCard :article="article" />
       </li>
     </ul>
   </section>

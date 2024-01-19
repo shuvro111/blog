@@ -49,5 +49,22 @@
 				]
 			}
 		]
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "all",
+		"primary": {
+			"order": {
+				"__TYPE__": "FieldContent",
+				"value": "asc",
+				"type": "Select"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]

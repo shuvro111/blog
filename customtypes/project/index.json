@@ -12,15 +12,45 @@
         },
         "type": "UID"
       },
-      "slices": {
-        "type": "Slices",
-        "fieldset": "Slice Zone",
+      "featured_image": {
+        "type": "Image",
         "config": {
-          "choices": {
-            "project_card": {
-              "type": "SharedSlice"
-            }
-          }
+          "label": "Featured Image",
+          "constraint": {
+            "width": 56,
+            "height": 56
+          },
+          "thumbnails": []
+        }
+      },
+      "name": {
+        "type": "Text",
+        "config": {
+          "label": "Name",
+          "placeholder": ""
+        }
+      },
+      "description": {
+        "type": "Text",
+        "config": {
+          "label": "Description",
+          "placeholder": ""
+        }
+      },
+      "github_url": {
+        "type": "Link",
+        "config": {
+          "label": "Github URL",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "live_url": {
+        "type": "Link",
+        "config": {
+          "label": "Live URL",
+          "placeholder": "",
+          "select": null
         }
       }
     }

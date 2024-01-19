@@ -12,9 +12,7 @@ useSeoMeta({
 
 const prismic = usePrismic()
 const { data: page } = useAsyncData('[home]', () =>
-  prismic.client.getSingle('home', {
-    fetchLinks: ['project.slices'],
-  }))
+  prismic.client.getSingle('home'))
 </script>
 
 <template>

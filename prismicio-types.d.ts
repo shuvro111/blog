@@ -124,22 +124,64 @@ interface HomeDocumentData {
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 
-type ProjectDocumentDataSlicesSlice = ProjectCardSlice;
-
 /**
  * Content for Project documents
  */
 interface ProjectDocumentData {
   /**
-   * Slice Zone field in *Project*
+   * Featured Image field in *Project*
    *
-   * - **Field Type**: Slice Zone
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.slices[]
+   * - **API ID Path**: project.featured_image
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#slices
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice>;
+  featured_image: prismic.ImageField<never>;
+
+  /**
+   * Name field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  name: prismic.KeyTextField;
+
+  /**
+   * Description field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Github URL field in *Project*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.github_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  github_url: prismic.LinkField;
+
+  /**
+   * Live URL field in *Project*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.live_url
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  live_url: prismic.LinkField;
 }
 
 /**
@@ -470,9 +512,40 @@ export type FeaturedProjectsSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *FeaturedProjects → Primary*
+ */
+export interface FeaturedProjectsSliceAllPrimary {
+  /**
+   * Order field in *FeaturedProjects → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Select Sort Order
+   * - **Default Value**: asc
+   * - **API ID Path**: featured_projects.primary.order
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  order: prismic.SelectField<"asc" | "desc", "filled">;
+}
+
+/**
+ * All variation for FeaturedProjects Slice
+ *
+ * - **API ID**: `all`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FeaturedProjectsSliceAll = prismic.SharedSliceVariation<
+  "all",
+  Simplify<FeaturedProjectsSliceAllPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *FeaturedProjects*
  */
-type FeaturedProjectsSliceVariation = FeaturedProjectsSliceDefault;
+type FeaturedProjectsSliceVariation =
+  | FeaturedProjectsSliceDefault
+  | FeaturedProjectsSliceAll;
 
 /**
  * FeaturedProjects Shared Slice
@@ -722,91 +795,6 @@ export type NewsletterSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *ProjectCard → Primary*
- */
-export interface ProjectCardSliceDefaultPrimary {
-  /**
-   * Name field in *ProjectCard → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_card.primary.name
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  name: prismic.KeyTextField;
-
-  /**
-   * Description field in *ProjectCard → Primary*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_card.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  description: prismic.KeyTextField;
-
-  /**
-   * Featured Image field in *ProjectCard → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_card.primary.featured_image
-   * - **Documentation**: https://prismic.io/docs/field#image
-   */
-  featured_image: prismic.ImageField<never>;
-
-  /**
-   * Github URL field in *ProjectCard → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_card.primary.github_url
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  github_url: prismic.LinkField;
-
-  /**
-   * Live URL field in *ProjectCard → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: project_card.primary.live_url
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
-   */
-  live_url: prismic.LinkField;
-}
-
-/**
- * Default variation for ProjectCard Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ProjectCardSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Simplify<ProjectCardSliceDefaultPrimary>,
-  never
->;
-
-/**
- * Slice variation for *ProjectCard*
- */
-type ProjectCardSliceVariation = ProjectCardSliceDefault;
-
-/**
- * ProjectCard Shared Slice
- *
- * - **API ID**: `project_card`
- * - **Description**: ProjectCard
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type ProjectCardSlice = prismic.SharedSlice<
-  "project_card",
-  ProjectCardSliceVariation
->;
-
-/**
  * Primary content in *SocialLinks → Primary*
  */
 export interface SocialLinksSliceDefaultPrimary {
@@ -903,7 +891,6 @@ declare module "@prismicio/client" {
       HomeDocumentDataSlicesSlice,
       ProjectDocument,
       ProjectDocumentData,
-      ProjectDocumentDataSlicesSlice,
       ProjectsDocument,
       ProjectsDocumentData,
       ProjectsDocumentDataSlicesSlice,
@@ -918,8 +905,10 @@ declare module "@prismicio/client" {
       FeaturedProjectsSlice,
       FeaturedProjectsSliceDefaultPrimary,
       FeaturedProjectsSliceDefaultItem,
+      FeaturedProjectsSliceAllPrimary,
       FeaturedProjectsSliceVariation,
       FeaturedProjectsSliceDefault,
+      FeaturedProjectsSliceAll,
       IntroSlice,
       IntroSliceDefaultPrimary,
       IntroSliceWithoutImagePrimary,
@@ -930,10 +919,6 @@ declare module "@prismicio/client" {
       NewsletterSliceDefaultPrimary,
       NewsletterSliceVariation,
       NewsletterSliceDefault,
-      ProjectCardSlice,
-      ProjectCardSliceDefaultPrimary,
-      ProjectCardSliceVariation,
-      ProjectCardSliceDefault,
       SocialLinksSlice,
       SocialLinksSliceDefaultPrimary,
       SocialLinksSliceDefaultItem,
