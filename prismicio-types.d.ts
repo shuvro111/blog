@@ -58,6 +58,71 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
+type ArticlesDocumentDataSlicesSlice = BlogPostsSlice | IntroSlice;
+
+/**
+ * Content for Articles documents
+ */
+interface ArticlesDocumentData {
+  /**
+   * Slice Zone field in *Articles*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: articles.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArticlesDocumentDataSlicesSlice> /**
+   * Meta Title field in *Articles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: articles.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Articles*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: articles.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Articles*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: articles.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Articles document from Prismic
+ *
+ * - **API ID**: `articles`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ArticlesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ArticlesDocumentData>,
+    "articles",
+    Lang
+  >;
+
 type BookmarksDocumentDataSlicesSlice = IntroSlice | BookmarksSlice;
 
 /**
@@ -432,6 +497,7 @@ export type SettingsDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ArticleDocument
+  | ArticlesDocument
   | BookmarksDocument
   | HomeDocument
   | ProjectDocument
@@ -488,9 +554,38 @@ export type BlogPostsSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *Articles → Primary*
+ */
+export interface BlogPostsSliceAllPrimary {
+  /**
+   * Order field in *Articles → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: Select Sort Order
+   * - **Default Value**: desc
+   * - **API ID Path**: blog_posts.primary.order
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  order: prismic.SelectField<"desc" | "asc", "filled">;
+}
+
+/**
+ * All variation for Articles Slice
+ *
+ * - **API ID**: `all`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BlogPostsSliceAll = prismic.SharedSliceVariation<
+  "all",
+  Simplify<BlogPostsSliceAllPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *Articles*
  */
-type BlogPostsSliceVariation = BlogPostsSliceDefault;
+type BlogPostsSliceVariation = BlogPostsSliceDefault | BlogPostsSliceAll;
 
 /**
  * Articles Shared Slice
@@ -1007,6 +1102,9 @@ declare module "@prismicio/client" {
     export type {
       ArticleDocument,
       ArticleDocumentData,
+      ArticlesDocument,
+      ArticlesDocumentData,
+      ArticlesDocumentDataSlicesSlice,
       BookmarksDocument,
       BookmarksDocumentData,
       BookmarksDocumentDataSlicesSlice,
@@ -1024,8 +1122,10 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       BlogPostsSlice,
       BlogPostsSliceDefaultPrimary,
+      BlogPostsSliceAllPrimary,
       BlogPostsSliceVariation,
       BlogPostsSliceDefault,
+      BlogPostsSliceAll,
       BookmarksSlice,
       BookmarksSliceDefaultItem,
       BookmarksSliceVariation,

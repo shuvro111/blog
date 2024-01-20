@@ -33,7 +33,33 @@
           "config": {
             "label": "Order",
             "placeholder": "Select Sort Order",
-            "options": ["desc", "asc"],
+            "options": [
+              "desc",
+              "asc"
+            ],
+            "default_value": "desc"
+          }
+        }
+      },
+      "items": {}
+    },
+    {
+      "id": "all",
+      "name": "All",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "order": {
+          "type": "Select",
+          "config": {
+            "label": "Order",
+            "placeholder": "Select Sort Order",
+            "options": [
+              "desc",
+              "asc"
+            ],
             "default_value": "desc"
           }
         }

@@ -28,5 +28,22 @@
 			}
 		},
 		"items": []
+	},
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "all",
+		"primary": {
+			"order": {
+				"__TYPE__": "FieldContent",
+				"value": "desc",
+				"type": "Select"
+			}
+		},
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"value": []
+			}
+		]
 	}
 ]
