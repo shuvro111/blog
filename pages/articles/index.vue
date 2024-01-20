@@ -1,18 +1,21 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import { components } from '~/slices'
+
+const prismic = usePrismic()
+const { data: page } = useAsyncData('[articles]', () =>
+  prismic.client.getSingle('articles'))
+
 useSeoMeta({
-  title: 'Articles',
-  description: 'Articles',
+  title: page.value?.data.meta_title,
+  description: page.value?.data.meta_description,
 })
 </script>
 
 <template>
-  <div>
-    <h1>
-      Coming soon...
-    </h1>
-  </div>
+  <SliceZone
+    wrapper="main"
+    :slices="page?.data.slices ?? []"
+    :components="components"
+    class="space-y-24"
+  />
 </template>
-
-<style>
-
-</style>
