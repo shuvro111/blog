@@ -58,6 +58,71 @@ export type ArticleDocument<Lang extends string = string> =
     Lang
   >;
 
+type BookmarksDocumentDataSlicesSlice = IntroSlice | BookmarksSlice;
+
+/**
+ * Content for Bookmarks documents
+ */
+interface BookmarksDocumentData {
+  /**
+   * Slice Zone field in *Bookmarks*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bookmarks.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<BookmarksDocumentDataSlicesSlice> /**
+   * Meta Title field in *Bookmarks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: bookmarks.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Bookmarks*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: bookmarks.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Bookmarks*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bookmarks.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Bookmarks document from Prismic
+ *
+ * - **API ID**: `bookmarks`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type BookmarksDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<BookmarksDocumentData>,
+    "bookmarks",
+    Lang
+  >;
+
 type HomeDocumentDataSlicesSlice =
   | NewsletterSlice
   | BlogPostsSlice
@@ -367,6 +432,7 @@ export type SettingsDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | ArticleDocument
+  | BookmarksDocument
   | HomeDocument
   | ProjectDocument
   | ProjectsDocument
@@ -436,6 +502,61 @@ type BlogPostsSliceVariation = BlogPostsSliceDefault;
 export type BlogPostsSlice = prismic.SharedSlice<
   "blog_posts",
   BlogPostsSliceVariation
+>;
+
+/**
+ * Primary content in *Bookmarks → Items*
+ */
+export interface BookmarksSliceDefaultItem {
+  /**
+   * URL field in *Bookmarks → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bookmarks.items[].url
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  url: prismic.LinkField;
+
+  /**
+   * Label field in *Bookmarks → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: bookmarks.items[].label
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  label: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Bookmarks Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BookmarksSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  Simplify<BookmarksSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Bookmarks*
+ */
+type BookmarksSliceVariation = BookmarksSliceDefault;
+
+/**
+ * Bookmarks Shared Slice
+ *
+ * - **API ID**: `bookmarks`
+ * - **Description**: Bookmarks
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BookmarksSlice = prismic.SharedSlice<
+  "bookmarks",
+  BookmarksSliceVariation
 >;
 
 /**
@@ -886,6 +1007,9 @@ declare module "@prismicio/client" {
     export type {
       ArticleDocument,
       ArticleDocumentData,
+      BookmarksDocument,
+      BookmarksDocumentData,
+      BookmarksDocumentDataSlicesSlice,
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
@@ -902,6 +1026,10 @@ declare module "@prismicio/client" {
       BlogPostsSliceDefaultPrimary,
       BlogPostsSliceVariation,
       BlogPostsSliceDefault,
+      BookmarksSlice,
+      BookmarksSliceDefaultItem,
+      BookmarksSliceVariation,
+      BookmarksSliceDefault,
       FeaturedProjectsSlice,
       FeaturedProjectsSliceDefaultPrimary,
       FeaturedProjectsSliceDefaultItem,
