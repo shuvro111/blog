@@ -23,7 +23,7 @@ async function getAriclesData(pageSize: number | undefined, order: 'desc' | 'asc
         field: 'article.last_publication_date',
         direction: order ?? 'desc',
       },
-      fetch: ['article.title', 'article.description'],
+      fetch: ['article.title', 'article.description', 'article.slices'],
     }))
   return articlesData.value?.results
 }

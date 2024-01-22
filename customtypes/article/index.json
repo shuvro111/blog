@@ -1,7 +1,7 @@
 {
   "id": "article",
   "label": "Article",
-  "format": "custom",
+  "format": "page",
   "repeatable": true,
   "status": true,
   "json": {
@@ -12,27 +12,42 @@
         },
         "type": "UID"
       },
-      "title": {
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "article": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
         "type": "Text",
         "config": {
-          "label": "Title",
+          "label": "Meta Title",
           "placeholder": ""
         }
       },
-      "description": {
+      "meta_description": {
         "type": "Text",
         "config": {
-          "label": "Description",
+          "label": "Meta Description",
           "placeholder": ""
         }
       },
-      "content": {
-        "type": "StructuredText",
+      "meta_image": {
+        "type": "Image",
         "config": {
-          "label": "Content",
-          "placeholder": "",
-          "allowTargetBlank": true,
-          "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+          "label": "Meta Image",
+          "constraint": {
+            "width": 1280,
+            "height": 720
+          },
+          "thumbnails": []
         }
       }
     }

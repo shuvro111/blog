@@ -4,42 +4,53 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
+type ArticleDocumentDataSlicesSlice = ArticleSlice;
+
 /**
  * Content for Article documents
  */
 interface ArticleDocumentData {
   /**
-   * Title field in *Article*
+   * Slice Zone field in *Article*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ArticleDocumentDataSlicesSlice> /**
+   * Meta Title field in *Article*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: article.title
-   * - **Tab**: Main
+   * - **API ID Path**: article.meta_title
+   * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
-   */
-  title: prismic.KeyTextField;
+   */;
+  meta_title: prismic.KeyTextField;
 
   /**
-   * Description field in *Article*
+   * Meta Description field in *Article*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: article.description
-   * - **Tab**: Main
+   * - **API ID Path**: article.meta_description
+   * - **Tab**: SEO & Metadata
    * - **Documentation**: https://prismic.io/docs/field#key-text
    */
-  description: prismic.KeyTextField;
+  meta_description: prismic.KeyTextField;
 
   /**
-   * Content field in *Article*
+   * Meta Image field in *Article*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Image
    * - **Placeholder**: *None*
-   * - **API ID Path**: article.content
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   * - **API ID Path**: article.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
    */
-  content: prismic.RichTextField;
+  meta_image: prismic.ImageField<never>;
 }
 
 /**
@@ -253,6 +264,67 @@ interface HomeDocumentData {
  */
 export type HomeDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+
+type LabDocumentDataSlicesSlice = ExperimentsSlice | IntroSlice;
+
+/**
+ * Content for Lab documents
+ */
+interface LabDocumentData {
+  /**
+   * Slice Zone field in *Lab*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lab.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<LabDocumentDataSlicesSlice> /**
+   * Meta Title field in *Lab*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: lab.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Lab*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: lab.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Lab*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: lab.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Lab document from Prismic
+ *
+ * - **API ID**: `lab`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type LabDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<Simplify<LabDocumentData>, "lab", Lang>;
 
 /**
  * Content for Project documents
@@ -495,14 +567,146 @@ export type SettingsDocument<Lang extends string = string> =
     Lang
   >;
 
+type StuffsIUseDocumentDataSlicesSlice = StuffsSlice | IntroSlice;
+
+/**
+ * Content for Stuffs I use documents
+ */
+interface StuffsIUseDocumentData {
+  /**
+   * Slice Zone field in *Stuffs I use*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stuffs_i_use.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<StuffsIUseDocumentDataSlicesSlice> /**
+   * Meta Title field in *Stuffs I use*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: stuffs_i_use.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Stuffs I use*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: stuffs_i_use.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Stuffs I use*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stuffs_i_use.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Stuffs I use document from Prismic
+ *
+ * - **API ID**: `stuffs_i_use`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type StuffsIUseDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<StuffsIUseDocumentData>,
+    "stuffs_i_use",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | ArticleDocument
   | ArticlesDocument
   | BookmarksDocument
   | HomeDocument
+  | LabDocument
   | ProjectDocument
   | ProjectsDocument
-  | SettingsDocument;
+  | SettingsDocument
+  | StuffsIUseDocument;
+
+/**
+ * Primary content in *Article → Primary*
+ */
+export interface ArticleSliceDefaultPrimary {
+  /**
+   * Title field in *Article → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Description field in *Article → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+
+  /**
+   * Content field in *Article → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: article.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Article Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ArticleSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Article*
+ */
+type ArticleSliceVariation = ArticleSliceDefault;
+
+/**
+ * Article Shared Slice
+ *
+ * - **API ID**: `article`
+ * - **Description**: Article
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ArticleSlice = prismic.SharedSlice<
+  "article",
+  ArticleSliceVariation
+>;
 
 /**
  * Primary content in *Articles → Primary*
@@ -652,6 +856,36 @@ type BookmarksSliceVariation = BookmarksSliceDefault;
 export type BookmarksSlice = prismic.SharedSlice<
   "bookmarks",
   BookmarksSliceVariation
+>;
+
+/**
+ * Default variation for Experiments Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ExperimentsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *Experiments*
+ */
+type ExperimentsSliceVariation = ExperimentsSliceDefault;
+
+/**
+ * Experiments Shared Slice
+ *
+ * - **API ID**: `experiments`
+ * - **Description**: Experiments
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ExperimentsSlice = prismic.SharedSlice<
+  "experiments",
+  ExperimentsSliceVariation
 >;
 
 /**
@@ -1090,6 +1324,83 @@ export type SocialLinksSlice = prismic.SharedSlice<
   SocialLinksSliceVariation
 >;
 
+/**
+ * Primary content in *Stuffs → Primary*
+ */
+export interface StuffsSliceDefaultPrimary {
+  /**
+   * Heading field in *Stuffs → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stuffs.primary.heading
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  heading: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *Stuffs → Items*
+ */
+export interface StuffsSliceDefaultItem {
+  /**
+   * Title field in *Stuffs → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stuffs.items[].title
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  title: prismic.KeyTextField;
+
+  /**
+   * Link field in *Stuffs → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stuffs.items[].link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  link: prismic.LinkField;
+
+  /**
+   * Description field in *Stuffs → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: stuffs.items[].description
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  description: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Stuffs Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StuffsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<StuffsSliceDefaultPrimary>,
+  Simplify<StuffsSliceDefaultItem>
+>;
+
+/**
+ * Slice variation for *Stuffs*
+ */
+type StuffsSliceVariation = StuffsSliceDefault;
+
+/**
+ * Stuffs Shared Slice
+ *
+ * - **API ID**: `stuffs`
+ * - **Description**: Stuffs
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type StuffsSlice = prismic.SharedSlice<"stuffs", StuffsSliceVariation>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -1102,6 +1413,7 @@ declare module "@prismicio/client" {
     export type {
       ArticleDocument,
       ArticleDocumentData,
+      ArticleDocumentDataSlicesSlice,
       ArticlesDocument,
       ArticlesDocumentData,
       ArticlesDocumentDataSlicesSlice,
@@ -1111,6 +1423,9 @@ declare module "@prismicio/client" {
       HomeDocument,
       HomeDocumentData,
       HomeDocumentDataSlicesSlice,
+      LabDocument,
+      LabDocumentData,
+      LabDocumentDataSlicesSlice,
       ProjectDocument,
       ProjectDocumentData,
       ProjectsDocument,
@@ -1119,7 +1434,14 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       SettingsDocumentDataNavigationItem,
+      StuffsIUseDocument,
+      StuffsIUseDocumentData,
+      StuffsIUseDocumentDataSlicesSlice,
       AllDocumentTypes,
+      ArticleSlice,
+      ArticleSliceDefaultPrimary,
+      ArticleSliceVariation,
+      ArticleSliceDefault,
       BlogPostsSlice,
       BlogPostsSliceDefaultPrimary,
       BlogPostsSliceAllPrimary,
@@ -1130,6 +1452,9 @@ declare module "@prismicio/client" {
       BookmarksSliceDefaultItem,
       BookmarksSliceVariation,
       BookmarksSliceDefault,
+      ExperimentsSlice,
+      ExperimentsSliceVariation,
+      ExperimentsSliceDefault,
       FeaturedProjectsSlice,
       FeaturedProjectsSliceDefaultPrimary,
       FeaturedProjectsSliceDefaultItem,
@@ -1152,6 +1477,11 @@ declare module "@prismicio/client" {
       SocialLinksSliceDefaultItem,
       SocialLinksSliceVariation,
       SocialLinksSliceDefault,
+      StuffsSlice,
+      StuffsSliceDefaultPrimary,
+      StuffsSliceDefaultItem,
+      StuffsSliceVariation,
+      StuffsSliceDefault,
     };
   }
 }

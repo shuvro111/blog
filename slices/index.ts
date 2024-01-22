@@ -4,12 +4,15 @@ import { defineAsyncComponent } from "vue";
 import { defineSliceZoneComponents } from "@prismicio/vue";
 
 export const components = defineSliceZoneComponents({
+  article: defineAsyncComponent(() => import("./Article/index.vue")),
   blog_posts: defineAsyncComponent(() => import("./Articles/index.vue")),
   bookmarks: defineAsyncComponent(() => import("./Bookmarks/index.vue")),
+  experiments: defineAsyncComponent(() => import("./Experiments/index.vue")),
   featured_projects: defineAsyncComponent(
     () => import("./FeaturedProjects/index.vue"),
   ),
   intro: defineAsyncComponent(() => import("./Intro/index.vue")),
   newsletter: defineAsyncComponent(() => import("./Newsletter/index.vue")),
   social_links: defineAsyncComponent(() => import("./SocialLinks/index.vue")),
+  stuffs: defineAsyncComponent(() => import("./Stuffs/index.vue")),
 });

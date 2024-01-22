@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import type { ArticleDocument } from '~/prismicio-types'
 
-defineProps<{
+const { article } = defineProps<{
   article: ArticleDocument
 }>()
+
+const { title, description } = article.data.slices[0]?.primary ?? {}
 
 function getReadableDate(dateString: string) {
   const date = new Date(dateString)
@@ -26,10 +28,10 @@ function getReadableDate(dateString: string) {
       <h2
         class="text-base font-bold tracking-tight text-gray-800 dark:text-gray-100 group-hover:text-primary-400 transition-colors duration-500"
       >
-        {{ article.data.title }}
+        {{ title }}
       </h2>
       <p class="text-sm text-gray-600 dark:text-gray-400">
-        {{ article.data.description }}
+        {{ description }}
       </p>
     </article>
   </NuxtLink>
