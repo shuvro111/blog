@@ -28,10 +28,10 @@ defineProps(
           >{{ slice.primary.heading }}</span>
         </div>
       </li>
-      <li v-for="item in slice.items" :key="item.title">
-        <PrismicLink :field="item.link">
+      <li v-for="item in slice.items" :key="item.title as string">
+        <PrismicLink :field="item.link" class="group">
           <p
-            class="text-base font-semibold text-gray-700 dark:text-gray-300 group-hover:text-primary-600"
+            class="text-base font-semibold text-gray-700 dark:text-gray-300 group-hover:text-primary-500 transition-colors duration-500"
           >
             {{ item.title }}
           </p>

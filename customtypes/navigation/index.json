@@ -1,33 +1,27 @@
 {
-  "id": "settings",
-  "label": "Settings",
+  "id": "navigation",
+  "label": "Navigation",
   "format": "custom",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
-      "site_title": {
-        "type": "Text",
-        "config": {
-          "label": "Site Title",
-          "placeholder": ""
-        }
-      },
-      "meta_description": {
-        "type": "Text",
-        "config": {
-          "label": "Meta Description",
-          "placeholder": ""
-        }
-      },
-      "og_image": {
+      "logo": {
         "type": "Image",
         "config": {
-          "label": "OG Image",
+          "label": "Logo",
           "constraint": {
-            "width": 1280,
-            "height": 720
+            "width": 40,
+            "height": 40
           },
+          "thumbnails": []
+        }
+      },
+      "favicon": {
+        "type": "Image",
+        "config": {
+          "label": "Favicon",
+          "constraint": {},
           "thumbnails": []
         }
       },
@@ -44,11 +38,10 @@
               }
             },
             "link": {
-              "type": "Link",
+              "type": "Text",
               "config": {
                 "label": "Link",
-                "placeholder": "",
-                "select": null
+                "placeholder": ""
               }
             },
             "icon": {
