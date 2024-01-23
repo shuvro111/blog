@@ -21,6 +21,7 @@ const navigation = computed(() => data.value?.data.navigation)
         active-class="text-primary-600 dark:text-primary-400"
       >
         <PrismicImage
+          v-if="logo"
           :field="logo"
           class="w-8 h-8"
         />
