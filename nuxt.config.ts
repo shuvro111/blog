@@ -1,6 +1,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxtjs/prismic', '@nuxtjs/google-fonts', '@nuxt/image'],
+  modules: [
+    '@nuxt/ui',
+    '@nuxtjs/prismic',
+    '@nuxtjs/google-fonts',
+    '@nuxt/image',
+    '@nuxt/content',
+    '@nuxthq/studio',
+  ],
 
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -28,5 +35,10 @@ export default defineNuxtConfig({
   },
   prismic: {
     endpoint: 'shuvro',
+  },
+  content: {
+    highlight: {
+      theme: 'github-dark',
+    },
   },
 })
